@@ -8,12 +8,20 @@ class CoffeePrefs extends StatefulWidget {
 }
 
 class _CoffeePrefsState extends State<CoffeePrefs> {
+  int sugarStrengh = 1;
+  int coffeStrengh = 1;
+
+
 void increaseStrengh (){
-  print("inc strengh by 1");
+  setState(() {
+    coffeStrengh = coffeStrengh<5 ? coffeStrengh+1 : 1;
+  });
 }
 
 void increaseSugars (){
-print("inc sugar by 1");
+  setState(() {
+    sugarStrengh = sugarStrengh<5? sugarStrengh+1:0;
+  });
 }
 
   @override
@@ -23,12 +31,14 @@ print("inc sugar by 1");
         Row(
           children: [
           const Text("Strengh: "),
-          const Text("3"),
-          Image.asset('assets/img/coffee_bean.png',
-          width: 25,
-          color: Colors.brown[100],
-          colorBlendMode: BlendMode.multiply,
-          ),
+          for (int i = 0;i<coffeStrengh; i++)
+              Image.asset('assets/img/coffee_bean.png',
+              width: 25,
+              color: Colors.brown[100],
+              colorBlendMode: BlendMode.multiply,
+              ),
+          
+
           const Expanded(child:  SizedBox()),
           FilledButton(
             style:FilledButton.styleFrom(
@@ -41,10 +51,12 @@ print("inc sugar by 1");
         Row(
           children: [
           const Text("Sugars: "),
-          const Text("3"),
-          Image.asset('assets/img/sugar_cube.png', width: 25,
-          color: Colors.brown[100],
-          colorBlendMode: BlendMode.multiply,),
+          if (sugarStrengh == 0 ) const Text("🚫🔥"),
+         for (int i=0;  i<sugarStrengh; i++) 
+            Image.asset('assets/img/sugar_cube.png', width: 25,
+            color: Colors.brown[100],
+            colorBlendMode: BlendMode.multiply,),
+          
           const Expanded(child:  SizedBox()),
           FilledButton(
             style:FilledButton.styleFrom(
