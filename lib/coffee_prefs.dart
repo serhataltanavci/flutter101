@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter101/styled_body_text.dart';
+import 'package:flutter101/styled_button.dart';
 
 class CoffeePrefs extends StatefulWidget {
   const CoffeePrefs({super.key});
@@ -30,7 +32,7 @@ void increaseSugars (){
       children: [
         Row(
           children: [
-          const Text("Strengh: "),
+          const StyledBodyText("Strengh: "),
           for (int i = 0;i<coffeStrengh; i++)
               Image.asset('assets/img/coffee_bean.png',
               width: 25,
@@ -40,17 +42,14 @@ void increaseSugars (){
           
 
           const Expanded(child:  SizedBox()),
-          FilledButton(
-            style:FilledButton.styleFrom(
-              backgroundColor: Colors.brown,
-              foregroundColor: Colors.white,
-            ) ,
-            onPressed: increaseStrengh, child: const Text("+"))
+          StyledButton(
+            onPressed: increaseStrengh, 
+            child: const Text("+"))
           ], ),
          const SizedBox(height: 20,),
         Row(
           children: [
-          const Text("Sugars: "),
+          const StyledBodyText("Sugars: "),
           if (sugarStrengh == 0 ) const Text("🚫🔥"),
          for (int i=0;  i<sugarStrengh; i++) 
             Image.asset('assets/img/sugar_cube.png', width: 25,
@@ -58,12 +57,9 @@ void increaseSugars (){
             colorBlendMode: BlendMode.multiply,),
           
           const Expanded(child:  SizedBox()),
-          FilledButton(
-            style:FilledButton.styleFrom(
-              backgroundColor: Colors.brown,
-              foregroundColor: Colors.white,
-            ) ,
-            onPressed: increaseSugars, child: const Text("+"))
+          StyledButton
+            (onPressed: increaseSugars, 
+            child: const Text("+"))
           // TextButton(
           //   style: TextButton.styleFrom(
           //     foregroundColor: Colors.brown
